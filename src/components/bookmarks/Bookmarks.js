@@ -39,7 +39,7 @@ const Bookmarks = () => {
           </div>
         ))
       ) : (
-        <p className="text-white">No bookmarks yet!</p>
+        <p className="text-white">No bookmarks yet! hehe</p>
       )}
     </div>
   );

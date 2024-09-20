@@ -9,9 +9,9 @@ import { AiOutlineClose } from "react-icons/ai";
 const navItems = [
   { name: "HOME", path: "/" },
   { name: "MOVIES", path: "/movies" },
+  { name: "BOOKMARKS", path: "/bookmarks" },
   { name: "PRICING", path: "/pricing" },
   { name: "CONTACT", path: "/contact" },
-  { name: "BOOKMARKS", path: "/bookmarks" },
 ];
 
 const Header = () => {

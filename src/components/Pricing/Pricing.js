@@ -53,7 +53,7 @@ const Pricing = () => {
       <div className="container px-5 py-24 mx-auto">
         <div className="flex flex-col text-center w-full mb-20">
           <h1 className="sm:text-4xl text-3xl font-medium title-font mb-2 text-[#e4d804]">
-            Pricing
+            Our Pricing Strategy
           </h1>
           <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
             Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical.

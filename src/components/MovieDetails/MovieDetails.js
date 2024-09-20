@@ -1,15 +1,29 @@
-// MovieDetails.js
 import { useParams } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { BASE_URL } from "../../Context";
 import { FaBookmark } from "react-icons/fa6";
-import { useContext } from "react";
 import { AppContext } from "../../Context";
+import Button from "@mui/material/Button";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 
 const MovieDetails = () => {
   const { id } = useParams();
   const { addBookmark } = useContext(AppContext);
   const [movie, setMovie] = useState({});
+  const [open, setOpen] = useState(false);
+
+  const handleClick = () => {
+    addBookmark(movie);
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
 
   const getMovies = async (url) => {
     try {
@@ -31,10 +45,6 @@ const MovieDetails = () => {
     return () => clearTimeout(timeOut);
   }, [id]);
 
-  const handleBookmark = () => {
-    addBookmark(movie);
-  };
-
   return (
     <section className="movieDetails text-gray-400 bg-gray-900 body-font md:px-28">
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-center py-24">
@@ -42,7 +52,7 @@ const MovieDetails = () => {
           <img
             src={movie.Poster}
             alt={movie.Title}
-            className="object-cover object-center rounded-lg shadow-lg "
+            className="object-cover object-center rounded-lg shadow-lg"
           />
         </div>
         <div className="lg:flex-grow md:w-1/2 leading-8 flex flex-col items-center md:items-start text-center md:text-left">
@@ -53,21 +63,51 @@ const MovieDetails = () => {
             <p className="text-[#e4d804]">{`${movie.Genre} -`}</p>
             <p className="text-white">{movie.Year}</p>
           </div>
-
           <p className="text-white">{movie.Director}</p>
-          <p className="mb-8 leading-relaxed text-lg max-w-xl">{movie.Plot}</p>
+          <p className="mb-4 sm:mb-8 leading-relaxed text-base sm:text-lg max-w-xl">
+            {movie.Plot}
+          </p>
 
-          <div className="flex flex-col md:flex-row justify-center gap-4">
-            <button className="inline-flex tracking-widest text-white bg-[#12151E] border-2 border-[#e4d804] px-10 py-4 transition duration-300 hover:text-black font-bold hover:bg-[#e4d804] rounded-full text-sm">
+          <div className="flex md:flex-row justify-center gap-4">
+            <button
+              className="inline-flex tracking-widest text-white bg-[#12151E] border-2 border-[#e4d804] 
+                px-6 sm:px-10 py-2 sm:py-4 transition duration-300 
+                hover:text-black font-bold hover:bg-[#e4d804] 
+                rounded-full text-sm sm:text-base"
+            >
               ▶ WATCH NOW
             </button>
-            <button
-              onClick={handleBookmark}
-              className="bookmark inline-flex tracking-widest text-white bg-[#12151E] border-2 border-[#e4d804] px-4 py-4 transition duration-300 hover:text-black font-bold hover:bg-[#e4d804] rounded-full text-xl"
+
+            <Button
+              onClick={handleClick}
+              variant="contained"
+              color="primary"
+              sx={{
+                backgroundColor: "#12151E",
+                border: "2px solid #e4d804",
+                borderRadius: "50%",
+                padding: { xs: "5px", sm: "10px" },
+                fontSize: { xs: "15px", sm: "20px" },
+                "&:hover": {
+                  backgroundColor: "#e4d804",
+                  color: "black",
+                },
+              }}
             >
               <FaBookmark />
-            </button>
+            </Button>
           </div>
+
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert
+              onClose={handleClose}
+              severity="success"
+              variant="filled"
+              sx={{ width: "100%" }}
+            >
+              Movie bookmarked successfully!
+            </Alert>
+          </Snackbar>
         </div>
       </div>
     </section>

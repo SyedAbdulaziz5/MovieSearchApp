@@ -48,6 +48,17 @@
   background-image: url(./assets//images/footer-img.jpg);
 }
 
+@media (max-width: 1082px) {
+  .navigation {
+    display: none;
+  }
+  .header {
+    padding: 1.25rem 1rem;
+  }
+}
+.movie-page {
+  background-image: url(./assets/images/ucm_bg_shape.png);
+}
 /* ========== */
 
 .bookmark-container {
