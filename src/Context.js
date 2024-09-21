@@ -31,7 +31,7 @@ const AppProvider = ({ children }) => {
 
     return () => clearTimeout(timeOut);
   }, [query]);
-// =========
+  // =========
   const addBookmark = (movie) => {
     setBookmarks((prevBookmarks) => {
       if (!prevBookmarks.find((item) => item.imdbID === movie.imdbID)) {
@@ -46,7 +46,7 @@ const AppProvider = ({ children }) => {
       prevBookmarks.filter((movie) => movie.imdbID !== id)
     );
   };
-// ==============
+  // ==============
   return (
     <AppContext.Provider
       value={{ movies, setQuery, bookmarks, addBookmark, removeBookmark }}
