@@ -27,7 +27,7 @@ const Home = () => {
           {popularMovies.map((movie) => (
             <Link
               style={{ textDecoration: "none", color: "white" }}
-              to={`/movie/${movie.id}`}
+              // to={`/movie/${movie.id}`}
             >
               <div className="posterImage">
                 <img
