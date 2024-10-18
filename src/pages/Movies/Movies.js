@@ -1,29 +1,37 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import { AppContext } from "../../Context";
 import { NavLink } from "react-router-dom";
 import { IoSearch } from "react-icons/io5";
 
-// Debounce function
-const debounce = (func, delay) => {
-  let timeoutId;
-  return (...args) => {
-    if (timeoutId) clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => {
-      func.apply(null, args);
+const useDebounce = (value, delay) => {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+  const timeoutRef = useRef(null);
+
+  useEffect(() => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    timeoutRef.current = setTimeout(() => {
+      setDebouncedValue(value);
     }, delay);
-  };
+
+    return () => {
+      clearTimeout(timeoutRef.current);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
 };
 
 const Movies = () => {
   const { movies, query, setQuery, isDarkMode } = useContext(AppContext);
   const [localQuery, setLocalQuery] = useState(query);
-
-  // Debounced function to update context state
-  const debouncedSetQuery = debounce(setQuery, 300);
+  const debouncedQuery = useDebounce(localQuery, 300);
 
   useEffect(() => {
-    debouncedSetQuery(localQuery); // Update context when local query changes
-  }, [localQuery]); // Run effect whenever localQuery changes
+    setQuery(debouncedQuery);
+  }, [debouncedQuery, setQuery]);
 
   return (
     <section
@@ -48,7 +56,7 @@ const Movies = () => {
             placeholder="Find Favorite Movie"
             className="w-full p-3 pl-4 text-[0.9rem] rounded-full bg-gray-800 text-white focus:outline-none"
             value={localQuery}
-            onChange={(e) => setLocalQuery(e.target.value)} // Update local state
+            onChange={(e) => setLocalQuery(e.target.value)}
             aria-label="Search Movies"
           />
           <button
