@@ -33,6 +33,9 @@
   margin-bottom: 0.4rem;
   text-align: left;
 }
+.posterImage::first-word {
+  color: #e4d804;
+}
 
 .posterImage__runtime {
   font-size: 2rem;

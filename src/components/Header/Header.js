@@ -5,6 +5,8 @@ import { AppContext } from "../../Context";
 import { CgProfile } from "react-icons/cg";
 import { TiThMenu } from "react-icons/ti";
 import { AiOutlineClose } from "react-icons/ai";
+import { FaMoon } from "react-icons/fa";
+import { IoSunny } from "react-icons/io5";
 
 const navItems = [
   { name: "HOME", path: "/" },
@@ -15,12 +17,16 @@ const navItems = [
 ];
 
 const Header = () => {
-  const { query, setQuery } = useContext(AppContext);
+  const { query, setQuery, isDarkMode, handleToggle } = useContext(AppContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <header className="header sticky top-0 flex flex-col md:flex-row justify-between items-center p-5 sm:px-10 md:px-28 bg-[#171d22] text-white z-50 shadow-lg">
+    <header
+      className={`header sticky top-0 flex flex-col md:flex-row justify-between items-center p-5 sm:px-10 md:px-28 z-50 shadow-lg ${
+        isDarkMode ? "light" : "dark"
+      }`}
+    >
       <div className="header-logo mb-4 md:mb-0">
         <NavLink to="/" className="text-3xl font-bold">
           <span className="text-[#e4d804]">Mov</span>Flix
@@ -45,15 +51,20 @@ const Header = () => {
           ))}
         </ul>
       </nav>
-
       <div className="relative flex items-center w-fit max-w-sm md:mt-0">
-        <h1 className="text-gray-600 text-3xl hover:text-[#e4d804] pr-4">
+        <h1 className="text-gray-600 text-3xl cursor-pointer hover:text-[#e4d804] pr-4">
           <CgProfile />
         </h1>
+        <button
+          onClick={handleToggle}
+          className="text-gray-600 text-2xl cursor-pointer hover:text-[#e4d804] pr-4"
+        >
+          {isDarkMode ? <FaMoon /> : <IoSunny />}
+        </button>
         <input
           type="text"
           placeholder="Search..."
-          className="w-full p-3 pl-4 text-[0.9rem] rounded-full bg-gray-800 border border-none text-white focus:outline-none"
+          className="input w-full p-3 pl-4 text-[0.9rem] rounded-full bg-gray-800 border border-none text-white focus:outline-none"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
@@ -62,7 +73,7 @@ const Header = () => {
         </button>
       </div>
 
-      {/* <div className="lg:hidden relative">
+      <div className="lg:hidden relative">
         <button onClick={toggleMenu} className="text-white text-2xl">
           {isMenuOpen ? <AiOutlineClose /> : <TiThMenu />}
         </button>
@@ -86,7 +97,7 @@ const Header = () => {
             </ul>
           </div>
         )}
-      </div> */}
+      </div>
     </header>
   );
 };

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { AppContext } from "../../Context";
 
 const socialLinks = [
   {
@@ -21,8 +22,13 @@ const socialLinks = [
 ];
 
 const Contact = () => {
+  const { isDarkMode } = useContext(AppContext);
   return (
-    <section className="text-gray-400 bg-gray-900 body-font relative">
+    <section
+      className={`text-gray-400  body-font relative ${
+        isDarkMode ? " bg-gray-50 text-gray-950" : " bg-gray-900 text-gray-400"
+      }`}
+    >
       <div className="container px-5 py-24 mx-auto">
         <div className="flex flex-col text-center w-full mb-12">
           <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-[#e4d804]">
@@ -34,51 +40,42 @@ const Contact = () => {
           </p>
         </div>
         <div className="lg:w-1/2 md:w-2/3 mx-auto">
-          <div className="flex flex-wrap -m-2">
+          <div className="flex flex-wrap m-2">
             <div className="p-2 w-1/2">
               <div className="relative">
-                <label
-                  htmlFor="name"
-                  className="leading-7 text-sm text-gray-400"
-                >
+                <label htmlFor="name" className="leading-7 text-sm ">
                   Name
                 </label>
                 <input
                   type="text"
                   id="name"
                   name="name"
-                  className="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-[#e4d804] focus:bg-gray-900 focus:ring-2 focus:ring-[#e4d804] text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                  className="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-[#e4d804] focus:bg-gray-900  focus:ring-[#e4d804] text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-300 ease-in-out"
                 />
               </div>
             </div>
             <div className="p-2 w-1/2">
               <div className="relative">
-                <label
-                  htmlFor="email"
-                  className="leading-7 text-sm text-gray-400"
-                >
+                <label htmlFor="email" className="leading-7 text-sm ">
                   Email
                 </label>
                 <input
                   type="email"
                   id="email"
                   name="email"
-                  className="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-[#e4d804] focus:bg-gray-900 focus:ring-2 focus:ring-[#e4d804] text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                  className="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-[#e4d804] focus:bg-gray-900 focus:ring-[#e4d804] text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-300 ease-in-out"
                 />
               </div>
             </div>
             <div className="p-2 w-full">
               <div className="relative">
-                <label
-                  htmlFor="message"
-                  className="leading-7 text-sm text-gray-400"
-                >
+                <label htmlFor="message" className="leading-7 text-sm ">
                   Message
                 </label>
                 <textarea
                   id="message"
                   name="message"
-                  className="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-[#e4d804] focus:bg-gray-900 focus:ring-2 focus:ring-[#e4d804] h-32 text-base outline-none text-gray-100 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
+                  className="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-[#e4d804] focus:bg-gray-900  focus:ring-[#e4d804] h-32 text-base outline-none text-gray-100 py-1 px-3 resize-none leading-6 transition-colors duration-300 ease-in-out"
                 ></textarea>
               </div>
             </div>
@@ -100,7 +97,7 @@ const Contact = () => {
                 {socialLinks.map((link, index) => (
                   <a
                     key={index}
-                    className="ml-4 text-gray-500 hover:text-[#e4d804] transition-colors duration-200"
+                    className="ml-4 text-gray-500 hover:text-[#e4d804] transition-colors duration-300"
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"

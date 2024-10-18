@@ -8,7 +8,12 @@ const AppContext = React.createContext();
 const AppProvider = ({ children }) => {
   const [movies, setMovies] = useState([]);
   const [bookmarks, setBookmarks] = useState([]);
-  const [query, setQuery] = useState("narnia");
+  const [query, setQuery] = useState("avengers");
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const handleToggle = () => {
+    setIsDarkMode(!isDarkMode);
+  };
 
   const getMovies = async (url) => {
     try {
@@ -31,7 +36,7 @@ const AppProvider = ({ children }) => {
 
     return () => clearTimeout(timeOut);
   }, [query]);
-  // =========
+  // +++++++++++++++++++++++++++++++++
   const addBookmark = (movie) => {
     setBookmarks((prevBookmarks) => {
       if (!prevBookmarks.find((item) => item.imdbID === movie.imdbID)) {
@@ -46,10 +51,18 @@ const AppProvider = ({ children }) => {
       prevBookmarks.filter((movie) => movie.imdbID !== id)
     );
   };
-  // ==============
+  // ++++++++++++++++++++++++++++++++++
   return (
     <AppContext.Provider
-      value={{ movies, setQuery, bookmarks, addBookmark, removeBookmark }}
+      value={{
+        movies,
+        setQuery,
+        bookmarks,
+        addBookmark,
+        removeBookmark,
+        isDarkMode,
+        handleToggle,
+      }}
     >
       {children}
     </AppContext.Provider>

@@ -4,45 +4,35 @@ import { FaCheckCircle } from "react-icons/fa";
 const Pricing = () => {
   const plans = [
     {
-      title: "START",
-      price: "Free",
-      features: [
-        "Vexillologist pitchfork",
-        "Tumeric plaid portland",
-        "Mixtape chillwave tumeric",
-      ],
-      isPopular: false,
-    },
-    {
       title: "PRO",
-      price: "$38",
+      price: "$7.99",
       features: [
-        "Vexillologist pitchfork",
-        "Tumeric plaid portland",
-        "Hexagon neutra unicorn",
-        "Mixtape chillwave tumeric",
+        "Video Quility - Good",
+        "Resolution - 480p",
+        "Screen you can watch - 1",
+        "Cancel anytime",
       ],
       isPopular: true,
     },
     {
       title: "BUSINESS",
-      price: "$56",
+      price: "$9.99",
       features: [
-        "Vexillologist pitchfork",
-        "Tumeric plaid portland",
-        "Hexagon neutra unicorn",
-        "Mixtape chillwave tumeric",
+        "Video Quility - Better",
+        "Resolution - 1080p",
+        "Screen you can watch - 2",
+        "Cancel anytime",
       ],
       isPopular: false,
     },
     {
       title: "SPECIAL",
-      price: "$72",
+      price: "$11.99",
       features: [
-        "Vexillologist pitchfork",
-        "Tumeric plaid portland",
-        "Hexagon neutra unicorn",
-        "Mixtape chillwave tumeric",
+        "Video Quility - Best",
+        "Resolution - 4k+HDR",
+        "Screen you can watch - 4",
+        "Cancel anytime",
       ],
       isPopular: false,
     },
@@ -58,7 +48,7 @@ const Pricing = () => {
           <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
             Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical.
           </p>
-          <div className="flex mx-auto border-2 border-indigo-500 rounded overflow-hidden mt-6">
+          <div className="flex mx-auto border-2 border-indigo-500 rounded overflow-hidden mt-6 ">
             <button className="py-1 px-4 bg-indigo-500 text-white focus:outline-none">
               Monthly
             </button>
@@ -67,7 +57,7 @@ const Pricing = () => {
             </button>
           </div>
         </div>
-        <div className="flex flex-wrap -m-4">
+        <div className="flex flex-wrap -m-4 justify-center">
           {plans.map((plan, index) => (
             <div key={index} className="p-4 xl:w-1/4 md:w-1/2 w-full">
               <div

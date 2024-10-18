@@ -1,4 +1,3 @@
-
 .app {
   overflow: hidden;
 }
@@ -60,8 +59,12 @@
     padding: 1.25rem 1rem;
   }
 }
-.movie-page {
+.movie-page.dark {
   background-image: url(./assets/images/ucm_bg_shape.png);
+  transition: all 300ms ease-in-out;
+}
+.movie-page.light {
+  transition: all 300ms ease-in-out;
 }
 /* ========== */
 
@@ -89,3 +92,14 @@
     max-width: calc(25% - 2rem);
   }
 } */
+
+.header.light {
+  background-color: #fff;
+  color: #000;
+  transition: all 300ms ease-in-out;
+}
+.header.dark {
+  background-color: #171d22;
+  color: #fff;
+  transition: all 300ms ease-in-out;
+}
