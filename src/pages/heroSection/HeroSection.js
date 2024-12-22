@@ -56,7 +56,7 @@ const Home = () => {
                     <IoIosStar />
                   </span>
                 </div>
-                <div className="posterImage__description">{movie.overview}</div>
+                {/* <div className="posterImage__description">{movie.overview}</div> */}
               </div>
             </Link>
           ))}
